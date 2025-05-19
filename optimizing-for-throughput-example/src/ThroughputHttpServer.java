@@ -14,7 +14,9 @@ import java.net.InetSocketAddress;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 
 /**
  * Optimizing for Throughput Part 2 - HTTP server + Jmeter
@@ -35,6 +37,10 @@ public class ThroughputHttpServer {
         Executor executor = Executors.newFixedThreadPool(NUMBER_OF_THREADS);
         server.setExecutor(executor);
         server.start();
+
+        ExecutorService executorService = Executors.newFixedThreadPool(2);
+        Future<Integer> future = executorService.submit(() -> 5 + 5);
+//        Integer result = future.get();
     }
 
     private static class WordCountHandler implements HttpHandler {
