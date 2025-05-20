@@ -38,7 +38,7 @@ public class Main {
         }
 
         public void checkForDataRace() {
-            if (y > x) {
+            if (y != x) {
                 System.out.println("y > x - Data Race is detected");
             }
         }
